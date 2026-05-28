@@ -1,0 +1,188 @@
+/* =========================
+   RESET
+========================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================
+   ROOT COLORS
+========================= */
+
+:root {
+
+  --espresso: #0d0905;
+  --roast: #1a1008;
+  --bark: #2c1a0e;
+
+  --caramel: #7c4a1e;
+
+  --latte: #c4956a;
+
+  --cream: #f0dfc8;
+
+  --gold: #d4a853;
+  --gold-light: #f0c97a;
+
+}
+
+/* =========================
+   GLOBAL
+========================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+
+  background: var(--espresso);
+
+  color: var(--cream);
+
+  font-family: 'Cormorant Garamond', serif;
+
+  overflow-x: hidden;
+
+  position: relative;
+
+}
+
+/* =========================
+   HIDE ORIGINAL CURSOR
+========================= */
+
+@media (min-width: 769px) {
+
+  * {
+    cursor: none !important;
+  }
+
+}
+
+/* =========================
+   FILM GRAIN
+========================= */
+
+body::after {
+
+  content: '';
+
+  position: fixed;
+
+  inset: 0;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+
+  opacity: 0.03;
+
+  pointer-events: none;
+
+  z-index: -1;
+
+}
+
+/* =========================
+   CUSTOM CURSOR
+========================= */
+
+.cursor {
+
+  position: fixed;
+
+  width: 12px;
+  height: 12px;
+
+  background: var(--gold);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: 9999;
+
+  transform: translate(-50%, -50%);
+
+  transition:
+    transform 0.1s ease,
+    width 0.3s,
+    height 0.3s;
+
+  mix-blend-mode: difference;
+
+}
+
+/* =========================
+   CURSOR RING
+========================= */
+
+.cursor-ring {
+
+  position: fixed;
+
+  width: 36px;
+  height: 36px;
+
+  border: 1px solid var(--gold);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: 9998;
+
+  transform: translate(-50%, -50%);
+
+  transition:
+    transform 0.15s ease;
+
+  opacity: 0.5;
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .cursor,
+  .cursor-ring {
+    display: none;
+  }
+
+}
+
+/* =========================
+   GLOBAL BUTTON RESET
+========================= */
+
+button {
+  border: none;
+  outline: none;
+  background: none;
+}
+
+/* =========================
+   LINK RESET
+========================= */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================
+   IMAGE
+========================= */
+
+img {
+  max-width: 100%;
+  display: block;
+}
