@@ -264,7 +264,8 @@ export default {
           console.log('TOKEN =', token)
 
           await axios.post(
-            '/login',
+            'https://synelcoffebackend-production.up.railway.app/login'
+,
             {
               email: this.email,
               password: this.password
