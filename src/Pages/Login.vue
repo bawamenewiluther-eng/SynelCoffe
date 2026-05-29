@@ -255,10 +255,16 @@ export default {
           await axios.get(
             'https://synelcoffebackend-production.up.railway.app/sanctum/csrf-cookie'
           )
-                await axios.post('/login', {
-                  email: this.email,
-                  password: this.password
-                })
+                await axios.post(
+          'https://synelcoffebackend-production.up.railway.app/login',
+          {
+            email: this.email,
+            password: this.password
+          },
+          {
+            withCredentials: true
+          }
+        )
 
           await auth.fetchUser()
 
