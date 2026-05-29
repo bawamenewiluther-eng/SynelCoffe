@@ -1,21 +1,13 @@
-import { defineStore }
-from 'pinia'
-
+import { defineStore } from 'pinia'
 import axios from '../axios'
 
-export const useAuthStore =
-defineStore('auth', {
+export const useAuthStore = defineStore('auth', {
 
   state: () => ({
-
     user: null,
-
     isLogin: false,
-
     initialized: false,
-
     loading: true
-
   }),
 
   actions: {
@@ -27,6 +19,11 @@ defineStore('auth', {
         const response =
           await axios.get('/api/user')
 
+        console.log(
+          'USER DATA:',
+          response.data
+        )
+
         this.user =
           response.data
 
@@ -36,6 +33,11 @@ defineStore('auth', {
 
       catch (error) {
 
+        console.log(
+          'USER ERROR:',
+          error
+        )
+
         this.user = null
 
         this.isLogin = false
@@ -43,7 +45,9 @@ defineStore('auth', {
       }
 
       finally {
+
         this.loading = false
+
         this.initialized = true
 
       }
