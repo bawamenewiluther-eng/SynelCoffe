@@ -1,9 +1,10 @@
 import axios from 'axios'
 
 const instance = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
+  baseURL: 'https://synelcoffebackend-production.up.railway.app',
   withCredentials: true,
-  withXSRFToken: true
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN'
 })
 
 export default instance

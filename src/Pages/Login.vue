@@ -235,32 +235,12 @@ export default {
   try {
 
     // Ambil CSRF cookie
-    await axios.get(
-      'https://synelcoffebackend-production.up.railway.app/sanctum/csrf-cookie',
-      {
-        withCredentials: true
-      }
-    )
-      console.log(document.cookie)
-    // Login
-    await axios.post(
-  'https://synelcoffebackend-production.up.railway.app/login',
-  {
-    email: this.email,
-    password: this.password
-  },
-  {
-    withCredentials: true,
-    headers: {
-      'X-XSRF-TOKEN': decodeURIComponent(
-        document.cookie
-          .split('; ')
-          .find(c => c.startsWith('XSRF-TOKEN='))
-          ?.split('=')[1] || ''
-      )
-    }
-  }
-)
+    await axios.get('/sanctum/csrf-cookie')
+
+await axios.post('/login', {
+  email: this.email,
+  password: this.password
+})
 
     await auth.fetchUser()
 
