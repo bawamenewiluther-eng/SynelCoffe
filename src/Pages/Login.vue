@@ -255,6 +255,13 @@ export default {
           await axios.get(
             'https://synelcoffebackend-production.up.railway.app/sanctum/csrf-cookie'
           )
+          console.log(
+            axios.defaults.xsrfCookieName
+          )
+
+          console.log(
+            axios.defaults.xsrfHeaderName
+          )
           console.log('COOKIE:', document.cookie)
           // LOGIN
           const token = decodeURIComponent(
