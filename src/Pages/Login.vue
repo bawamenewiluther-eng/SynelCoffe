@@ -237,10 +237,10 @@ export default {
     // Ambil CSRF cookie
     await axios.get('/sanctum/csrf-cookie')
 
-await axios.post('/login', {
-  email: this.email,
-  password: this.password
-})
+    await axios.post('/login', {
+      email: this.email,
+      password: this.password
+    })
 
     await auth.fetchUser()
 

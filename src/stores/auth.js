@@ -17,7 +17,7 @@ export const useAuthStore = defineStore('auth', {
       try {
 
         const response =
-          await axios.get('/user')
+          await axios.get('api/user')
 
         console.log(
           'USER DATA:',
