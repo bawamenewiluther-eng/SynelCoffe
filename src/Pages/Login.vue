@@ -252,7 +252,7 @@ export default {
         try {
 
           // AMBIL CSRF COOKIE
-         await axios.get('/sanctum/csrf-cookie')
+         await axios.get('https://synelcoffebackend-production.up.railway.app/sanctum/csrf-cookie')
 
           const token = decodeURIComponent(
             document.cookie
