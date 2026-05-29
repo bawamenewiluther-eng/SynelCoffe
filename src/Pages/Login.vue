@@ -226,92 +226,60 @@ export default {
         }, 3500)
 
       },
-    async handleLogin() {
-      const auth =
-       useAuthStore()
-        this.loading = true
-        
+   async handleLogin() {
 
-        // VALIDATION
-        if (
-          !this.email ||
-          !this.password
-        ) {
+  const auth = useAuthStore()
 
-          this.showToast(
-            'error',
-            'Semua field wajib diisi'
-          )
+  this.loading = true
 
-          this.loading = false
+  try {
 
-          return
+    // Ambil CSRF cookie
+    await axios.get(
+      'https://synelcoffebackend-production.up.railway.app/sanctum/csrf-cookie',
+      {
+        withCredentials: true
+      }
+    )
 
-        }
-
-        try {
-
-          // AMBIL CSRF COOKIE
-         await axios.get('https://synelcoffebackend-production.up.railway.app/sanctum/csrf-cookie')
-
-          const token = decodeURIComponent(
-            document.cookie
-              .split('; ')
-              .find(c => c.startsWith('XSRF-TOKEN='))
-              ?.split('=')[1] || ''
-          )
-
-          console.log('TOKEN =', token)
-
-          await axios.post(
-            'https://synelcoffebackend-production.up.railway.app/login'
-,
-            {
-              email: this.email,
-              password: this.password
-            },
-            {
-              headers: {
-                'X-XSRF-TOKEN': token
-              }
-            }
-          )
-
-          await auth.fetchUser()
-
-          // SUCCESS
-          this.showToast(
-            'success',
-            'Selamat Datang di Synel Coffee ☕'
-          )
-
-          // RELOAD APP
-          setTimeout(() => {
-
-            this.$router.push('/')
-
-          }, 1800)
-          
-
-        } catch (error) {
-
-          console.error(error)
-
-          this.showToast(
-
-            'error',
-
-            'Email atau password salah'
-
-          )
-
-        }finally {
-
-          this.loading = false
-
-        }
+    // Login
+    await axios.post(
+      'https://synelcoffebackend-production.up.railway.app/login',
+      {
+        email: this.email,
+        password: this.password
       },
-        loginGoogle() {
+      {
+        withCredentials: true
+      }
+    )
+
+    await auth.fetchUser()
+
+    this.showToast(
+      'success',
+      'Selamat Datang di Synel Coffee ☕'
+    )
+
+    this.$router.push('/')
+
+  } catch (error) {
+
+    console.error(error)
+
+    this.showToast(
+      'error',
+      'Login gagal'
+    )
+
+  } finally {
+
+    this.loading = false
+
+  }
+
+},
+     loginGoogle() {
 
       window.location.href =
         'https://synelcoffebackend-production.up.railway.app/auth/google/redirect'
