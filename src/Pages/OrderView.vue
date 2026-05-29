@@ -81,7 +81,7 @@
 
           <img
             v-if="item.image"
-            :src="`http://localhost:8000/storage/${item.image}`"
+            :src="`https://synelcoffebackend-production.up.railway.app/storage/${item.image}`"
             class="order-image"
           >
 
@@ -292,7 +292,7 @@ export default {
     this.paymentLoading = true
     const response = await axios.post(
 
-      'http://localhost:8000/api/checkout',
+      'https://synelcoffebackend-production.up.railway.app/api/checkout',
 
       {
 
@@ -322,7 +322,7 @@ export default {
 
           await axios.post(
 
-            'http://localhost:8000/api/save-order',
+            'https://synelcoffebackend-production.up.railway.app/api/save-order',
 
             {
 

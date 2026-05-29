@@ -192,7 +192,7 @@
 
   <img
     v-if="menu.image"
-    :src="`http://localhost:8000/storage/${menu.image}`"
+    :src="`https://synelcoffebackend-production.up.railway.app/storage/${menu.image}`"
   >
 
   <div
@@ -360,7 +360,7 @@ const fetchMenus = async () => {
   try {
 
     const response = await axios.get(
-      'http://localhost:8000/api/menus'
+     'https://synelcoffebackend-production.up.railway.app/api/menus',
     )
 
     menus.value = response.data
@@ -461,7 +461,7 @@ const confirmDelete = async () => {
     loading.value = true
     await axios.delete(
 
-      `http://localhost:8000/api/menus/${deleteId.value}`
+      `https://synelcoffebackend-production.up.railway.app/api/menus/${deleteId.value}`
 
     )
 
@@ -492,7 +492,7 @@ if (editingId.value) {
 
   await axios.put(
 
-    `http://localhost:8000/api/menus/${editingId.value}`,
+   `https://synelcoffebackend-production.up.railway.app/api/menus/${editingId.value}`,
 
     form.value
 
@@ -518,7 +518,7 @@ if (editingId.value) {
 
     await axios.post(
 
-      'http://localhost:8000/api/menus/upload-image',
+      'https://synelcoffebackend-production.up.railway.app/api/menus/upload-image',
 
       formData,
 
@@ -552,7 +552,7 @@ if (editingId.value) {
 
       const response = await axios.post(
 
-        'http://localhost:8000/api/menus',
+        'https://synelcoffebackend-production.up.railway.app/api/menus',
 
         form.value
 
@@ -578,7 +578,7 @@ if (editingId.value) {
 
         await axios.post(
 
-          'http://localhost:8000/api/menus/upload-image',
+          'https://synelcoffebackend-production.up.railway.app/api/menus/upload-image',
 
           formData,
 

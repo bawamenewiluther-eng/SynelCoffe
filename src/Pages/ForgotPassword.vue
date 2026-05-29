@@ -143,7 +143,7 @@ export default {
 
         await axios.post(
 
-          'http://localhost:8000/api/forgot-password',
+         'https://synelcoffebackend-production.up.railway.app/api/forgot-password',
 
           {
 

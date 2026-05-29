@@ -142,7 +142,7 @@
 
             <img
               v-if="item.image"
-              :src="`http://localhost:8000/storage/${item.image}`"
+              :src="`https://synelcoffebackend-production.up.railway.app/storage/${item.image}`"
               class="menu-image"
             >
 
@@ -544,7 +544,7 @@ export default {
 
             const response = await axios.get(
 
-              'http://localhost:8000/api/menus',
+              'https://synelcoffebackend-production.up.railway.app/api/menus',
 
               {
 
@@ -1513,7 +1513,7 @@ export default {
   bottom: 28px;
   right: 28px;
 
-  z-index: 100;
+  z-index: 101;
 
   display: flex;
 
@@ -1637,7 +1637,7 @@ export default {
 
   inset: 0;
 
-  z-index: 2000;
+  z-index: 101;
 
   display: flex;
 

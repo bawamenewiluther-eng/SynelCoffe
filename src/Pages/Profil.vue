@@ -1,6 +1,4 @@
-# ProfileView.vue
 
-```vue
 <template>
 
   <section class="profile-page">
@@ -105,7 +103,7 @@ export default {
     try {
 
       const response = await axios.get(
-        'http://localhost:8000/api/user'
+      'https://synelcoffebackend-production.up.railway.app/api/user'
       )
 
       this.user = response.data
@@ -125,7 +123,7 @@ export default {
       try {
 
         await axios.post(
-          'http://localhost:8000/logout'
+          'https://synelcoffebackend-production.up.railway.app/logout'
         )
 
         window.location.href = '/login'
@@ -494,5 +492,5 @@ export default {
 }
 
 </style>
-```
+
 

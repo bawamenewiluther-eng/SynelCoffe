@@ -199,7 +199,7 @@ async fetchOrders() {
     const response =
       await axios.get(
 
-        'http://localhost:8000/api/orders'
+        'https://synelcoffebackend-production.up.railway.app/api/orders',
 
       )
 
@@ -227,7 +227,7 @@ async updateStatus(
 
     await axios.post(
  
-         `http://localhost:8000/api/orders/update-status/${orderId}`,
+         `https://synelcoffebackend-production.up.railway.app/api/orders/update-status/${orderId}`,
       {
 
         order_status: status

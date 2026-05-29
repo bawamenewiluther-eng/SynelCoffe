@@ -253,12 +253,12 @@ export default {
 
           // AMBIL CSRF COOKIE
           await axios.get(
-            'http://localhost:8000/sanctum/csrf-cookie'
+            'https://synelcoffebackend-production.up.railway.app/sanctum/csrf-cookie'
           )
 
           // LOGIN
           await axios.post(
-            'http://localhost:8000/login',
+            'https://synelcoffebackend-production.up.railway.app/login',
             {
 
               email: this.email,
@@ -304,7 +304,7 @@ export default {
         loginGoogle() {
 
       window.location.href =
-        'http://localhost:8000/auth/google/redirect'
+        'https://synelcoffebackend-production.up.railway.app/auth/google/redirect'
        }
   }
 
@@ -779,7 +779,7 @@ export default {
 
   backdrop-filter: blur(12px);
 
-  z-index: 99999;
+  z-index: 101;
 
   display: flex;
 

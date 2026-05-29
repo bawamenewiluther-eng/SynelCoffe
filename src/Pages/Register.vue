@@ -270,7 +270,7 @@ export default {
 
             // REGISTER
             const response = await axios.post(
-            'http://localhost:8000/register',
+            'https://synelcoffebackend-production.up.railway.app/register',
               {
                 name: this.name,
                 email: this.email,
@@ -316,7 +316,7 @@ export default {
                RegistGoogle() {
 
               window.location.href =
-                'http://localhost:8000/auth/google/redirect'
+                 'https://synelcoffebackend-production.up.railway.app/auth/google/redirect'
               }
 
             }
