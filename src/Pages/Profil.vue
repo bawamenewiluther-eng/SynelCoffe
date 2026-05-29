@@ -103,7 +103,7 @@ export default {
     try {
 
       const response = await axios.get(
-      'https://synelcoffebackend-production.up.railway.app/api/user'
+      'https://synelcoffebackend-production.up.railway.app/user'
       )
 
       this.user = response.data
