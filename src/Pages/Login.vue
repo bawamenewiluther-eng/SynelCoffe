@@ -255,36 +255,6 @@ export default {
           await axios.get(
             'https://synelcoffebackend-production.up.railway.app/sanctum/csrf-cookie'
           )
-          console.log(
-            axios.defaults.xsrfCookieName
-          )
-
-          console.log(
-            axios.defaults.xsrfHeaderName
-          )
-          console.log('COOKIE:', document.cookie)
-          // LOGIN
-          const token = decodeURIComponent(
-          document.cookie
-            .split('; ')
-            .find(row => row.startsWith('XSRF-TOKEN='))
-            ?.split('=')[1] || ''
-        )
-
-        console.log('TOKEN:', token)
-        await axios.post(
-          'https://synelcoffebackend-production.up.railway.app/login',
-          {
-            email: this.email,
-            password: this.password
-          },
-          {
-            withCredentials: true,
-            headers: {
-              'X-XSRF-TOKEN': token
-            }
-          }
-        )
           await auth.fetchUser()
 
           // SUCCESS
