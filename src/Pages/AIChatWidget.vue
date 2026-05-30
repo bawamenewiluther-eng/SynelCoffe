@@ -1,13 +1,14 @@
 <template>
-  <button 
+<button 
     v-if="!showChat" 
     class="ai-float-btn" 
+    :class="{ 'is-shifted': isShifted }"
     @click="toggleChat"
   >
-    <img :src="logoUrl" alt="Synel Logo" />
+    <img :src="logoUrl" alt="Logo" />
   </button>
 
-  <div v-if="showChat" class="ai-chatbox">
+  <div v-if="showChat" class="ai-chatbox" :class="{ 'is-shifted': isShifted }">
     <div class="chat-header">
       <div>
         <h3>Synel AI</h3>
@@ -45,6 +46,12 @@ import axios from '../api'
 import { useAuthStore } from '../stores/auth'
 
 export default {
+  props: {
+    isShifted: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       // Pastikan path ini sesuai dengan struktur folder kamu
@@ -92,7 +99,7 @@ export default {
       this.scrollToBottom();
 
       // Animasi Loading
-      this.messages.push({ role: 'ai', text: '☕ Synel AI sedang berpikir...' });
+      this.messages.push({ role: 'ai', text: '☕ ........' });
 
       try {
         const response = await axios.post(
@@ -128,6 +135,16 @@ export default {
 </script>
 
 <style scoped>
+.ai-float-btn, .ai-chatbox {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.ai-float-btn.is-shifted {
+  bottom: 160px; /* Naik di atas cart-floater */
+}
+.ai-chatbox.is-shifted {
+  bottom: 160px;
+  height: calc(100vh - 190px); /* Sesuaikan tinggi agar tidak keluar layar */
+}
 /* FLOAT BUTTON */
 .ai-float-btn {
   position: fixed;

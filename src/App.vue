@@ -15,8 +15,6 @@ import Navbar from './template/Navbar.vue'
 import Cursor from './template/Cursor.vue'
 import Footer from './template/Footer.vue'
 import AIChatWidget from './Pages/AIChatWidget.vue'
-import Menu from './Pages/Menu.vue'
-import Menu from './Pages/Menu.vue'
 
 const auth =
   useAuthStore()
@@ -82,9 +80,7 @@ onMounted(() => {
 </main>
 
 <Footer />
-<div class="floating-container">
-  <Menu /> <AIChatWidget /> 
- </div>
+<AIChatWidget />
 
   </template>
   <Cursor />
@@ -252,24 +248,5 @@ onMounted(() => {
   animation:
     spin 1s linear infinite;
 
-}
-.floating-container {
-  position: fixed;
-  right: 30px;
-  bottom: 30px;
-  display: flex;
-  flex-direction: column-reverse; /* Menyusun dari bawah ke atas */
-  align-items: flex-end;
-  gap: 15px; /* Jarak antar elemen agar tidak nempel */
-  z-index: 9999;
-  pointer-events: none; /* Agar area kosong container tidak menghalangi klik */
-}
-
-/* Pastikan elemen di dalamnya bisa diklik kembali */
-.floating-container > * {
-  pointer-events: auto;
-  position: relative !important; /* Batalkan position fixed bawaan komponen */
-  right: 0 !important;
-  bottom: 0 !important;
 }
 </style>
