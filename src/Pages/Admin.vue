@@ -281,24 +281,6 @@
 </div>
 <template>
 
-  <!-- CURSOR -->
-  <div
-    class="cursor"
-    :style="{
-      left: x + 'px',
-      top: y + 'px',
-    }"
-  ></div>
-
-  <!-- CURSOR RING -->
-  <div
-    class="cursor-ring"
-    :style="{
-      left: x + 'px',
-      top: y + 'px'
-    }"
-  ></div>
-
 </template>
 <div
   v-if="loading"
@@ -355,6 +337,7 @@
 import axios from '../api'
 import { ref, onMounted } from 'vue'
 const menus = ref([])
+const previewImage = ref(null) 
 const fetchMenus = async () => {
 
   try {
@@ -393,10 +376,26 @@ const blockInvalidChar = (e) => {
 
 const imageFile = ref(null)
 const handleImage = (event) => {
-
-  imageFile.value =
-    event.target.files[0]
-
+  const file = event.target.files[0]
+  if (file) {
+    imageFile.value = file
+    // BUAT URL PREVIEW agar gambar bisa muncul di layar sebelum diupload
+    previewImage.value = URL.createObjectURL(file) 
+  }
+}
+const resetForm = () => {
+    editingId.value = null
+    form.value = {
+      name: '',
+      category: '',
+      price: '',
+      description: '',
+      full_description: '',
+      temperature: 'hot'
+    }
+    imageFile.value = null
+    previewImage.value = null // RESET PREVIEW JUGA
+    fetchMenus()
 }
 const form = ref({
 
@@ -636,7 +635,7 @@ if (editingId.value) {
 
   }finally {
     loading.value = false
-    previewImage.value = null
+  
   }
 
 }
@@ -1584,7 +1583,7 @@ input[type="number"] {
   top: 32px;
   right: 32px;
 
-  z-index: 99;
+  z-index: 999;
 
   min-width: 320px;
 
