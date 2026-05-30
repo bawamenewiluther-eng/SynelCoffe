@@ -43,7 +43,7 @@ onMounted(() => {
 
       <div class="loader-text">
 
-        Brewing Experience...
+        Tunggu sebentar....
 
       </div>
 
@@ -142,7 +142,7 @@ onMounted(() => {
 
   inset: 0;
 
-  z-index: 99;
+  z-index: 101;
 
   display: flex;
 
