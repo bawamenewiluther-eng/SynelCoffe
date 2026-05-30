@@ -116,7 +116,7 @@ export default {
 
       try {
 
-       await axios.post('api/logout')
+       await axios.post('/logout')
 
 
       } catch (error) {
