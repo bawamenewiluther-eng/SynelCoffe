@@ -116,8 +116,15 @@ export default {
 
       try {
 
-       await axios.post('/logout')
+        await axios.get('/sanctum/csrf-cookie')
 
+        await axios.post('/logout')
+
+        const auth = useAuthStore()
+
+        auth.logout()
+
+        this.$router.push('/login')
 
       } catch (error) {
 
@@ -128,6 +135,7 @@ export default {
         )
 
       }
+
     }
 
   }
