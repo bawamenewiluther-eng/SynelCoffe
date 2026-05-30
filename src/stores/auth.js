@@ -12,47 +12,59 @@ export const useAuthStore = defineStore('auth', {
 
   actions: {
 
-    async fetchUser() {
+async fetchUser() {
 
-      try {
+  console.log('FETCH USER START')
 
-        const response =
-          await axios.get('api/user')
+  try {
 
-        console.log(
-          'USER DATA:',
-          response.data
-        )
+    const response =
+      await axios.get('api/user')
 
-        this.user =
-          response.data
+    console.log(
+      'USER DATA:',
+      response.data
+    )
 
-        this.isLogin = true
+    this.user =
+      response.data
 
-      }
+    this.isLogin = true
 
-      catch (error) {
+  }
 
-        console.log(
-          'USER ERROR:',
-          error
-        )
+  catch (error) {
 
-        this.user = null
+    console.log(
+      'USER ERROR:',
+      error.response?.status
+    )
 
-        this.isLogin = false
+    console.log(
+      error.response?.data
+    )
 
-      }
+    this.user = null
 
-      finally {
+    this.isLogin = false
 
-        this.loading = false
+  }
 
-        this.initialized = true
+  finally {
 
-      }
+    console.log('FETCH USER END')
 
-    },
+    console.log('IS LOGIN:', this.isLogin)
+
+    console.log('USER:', this.user)
+
+    this.loading = false
+
+    this.initialized = true
+
+  }
+
+},
 
     logout() {
 
