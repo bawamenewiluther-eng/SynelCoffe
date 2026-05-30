@@ -55,13 +55,6 @@ const routes = [
     path: '/menu',
 
     component: Menu,
-
-    meta: {
-
-      requiresAuth: true
-
-    }
-
   },
 
 {
