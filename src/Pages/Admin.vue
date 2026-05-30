@@ -1576,32 +1576,37 @@ input[type="number"] {
    PREMIUM TOAST
 ========================= */
 
+/* =========================
+   PREMIUM TOAST (FIXED)
+========================= */
 .toast {
-
   position: fixed;
-
-  top: 32px;
+  /* Tambahkan jarak top agar di bawah Header, atau ubah ke bottom */
+  top: 110px; /* Sesuaikan dengan tinggi header kamu */
   right: 32px;
-
-  z-index: 999;
+  
+  /* Tingkatkan z-index agar di atas segalanya (Header biasanya 1000) */
+  z-index: 9999; 
 
   min-width: 320px;
-
   padding: 18px 22px;
-
   border-radius: 20px;
-
   display: flex;
-
   align-items: center;
-
   gap: 16px;
-
   backdrop-filter: blur(18px);
+  
+  /* Tambahkan pointer-events agar tidak menghalangi klik jika tidak sengaja */
+  pointer-events: auto; 
+  
+  animation: toastSlide 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
 
-  animation:
-    toastSlide 0.45s ease;
 
+.toast {
+  top: auto;
+  bottom: 32px;
+  right: 32px;
 }
 
 /* SUCCESS */
