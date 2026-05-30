@@ -423,18 +423,15 @@
     </div>
 
   </div>
-<AIChatWidget :is-shifted="cart.items.length > 0" />
 </template>
 
 <script>
-import AIChatWidget from './AIChatWidget.vue';
 import axios from '../api';
 import {
   useCartStore
 }
 from '../stores/cart'
 export default {
-  components: { AIChatWidget },
   async mounted() {
 
    this.fetchMenus()

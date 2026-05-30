@@ -15,7 +15,9 @@ import Navbar from './template/Navbar.vue'
 import Cursor from './template/Cursor.vue'
 import Footer from './template/Footer.vue'
 import AIChatWidget from './Pages/AIChatWidget.vue'
+import { useCartStore } from './stores/cart'
 
+const cart = useCartStore()
 const auth =
   useAuthStore()
 
@@ -80,7 +82,7 @@ onMounted(() => {
 </main>
 
 <Footer />
-<AIChatWidget />
+<AIChatWidget :is-shifted="cartStore.totalItems > 0" />
 
   </template>
   <Cursor />
