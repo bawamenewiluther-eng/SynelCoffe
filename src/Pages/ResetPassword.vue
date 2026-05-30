@@ -127,7 +127,7 @@
 
 <script>
 
-import axios from '../axios'
+import axios from '../api'
 
 export default {
 
@@ -205,7 +205,7 @@ mounted() {
 
         await axios.post(
 
-          'http://localhost:8000/api/reset-password',
+          'https://synelcoffebackend-production.up.railway.app/api/reset-password',
 
           {
 

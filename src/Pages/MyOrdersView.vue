@@ -1,4 +1,4 @@
-```vue
+
 <template>
 
   <section class="my-orders">
@@ -126,7 +126,7 @@
 
 <script>
 
-import axios from '../axios'
+import axios from '../api'
 
 import {
 
@@ -160,7 +160,7 @@ export default {
         const response =
           await axios.post(
 
-            'http://localhost:8000/api/my-orders',
+           'https://synelcoffebackend-production.up.railway.app/api/my-orders',
 
             {
 
@@ -325,4 +325,4 @@ mounted() {
 }
 
 </style>
-```
+

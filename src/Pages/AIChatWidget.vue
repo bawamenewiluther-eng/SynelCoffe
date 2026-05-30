@@ -98,7 +98,7 @@
 
 <script>
 import axios
-from '../axios'
+from '../api'
 import {
 
   useAuthStore
@@ -178,7 +178,7 @@ async sendMessage() {
     const response =
       await axios.post(
 
-        'http://localhost:8000/api/ai-chat',
+       'https://synelcoffebackend-production.up.railway.app/api/ai-chat',
 
        { message: userMessage, email: this.authStore.user?.email }
 

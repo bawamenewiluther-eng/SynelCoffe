@@ -159,7 +159,7 @@
 
 <script>
 
-import axios from '../axios'
+import axios from '../api'
 
 export default {
 
@@ -199,7 +199,7 @@ async fetchOrders() {
     const response =
       await axios.get(
 
-        'https://synelcoffebackend-production.up.railway.app/api/orders',
+        'https://synelcoffebackend-production.up.railway.app/api/orders'
 
       )
 

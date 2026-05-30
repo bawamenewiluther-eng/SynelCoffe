@@ -195,7 +195,7 @@
 </template>
 
 <script>
-import axios from '../axios'
+import axios from '../api'
 import { useAuthStore }
 from '../stores/auth'
 
@@ -263,7 +263,7 @@ export default {
 
             // AMBIL CSRF COOKIE
             await axios.get(
-             'http://localhost:8000/sanctum/csrf-cookie',
+             'https://synelcoffebackend-production.up.railway.app/sanctum/csrf-cookie',
               {
               }
             )

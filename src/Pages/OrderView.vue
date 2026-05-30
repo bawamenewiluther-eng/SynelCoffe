@@ -264,7 +264,7 @@
 <script>
 import { useCartStore }
 from '../stores/cart'
-import axios from '../axios'
+import axios from '../api'
 import { useAuthStore }
 
 from '../stores/auth'

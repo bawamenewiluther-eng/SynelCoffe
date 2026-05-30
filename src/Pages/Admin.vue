@@ -352,7 +352,7 @@
 </template>
 
 <script setup>
-import axios from '../axios'
+import axios from '../api'
 import { ref, onMounted } from 'vue'
 const menus = ref([])
 const fetchMenus = async () => {
