@@ -1,6 +1,6 @@
 <template>
   <button class="ai-float-btn" @click="toggleChat">
-    <img src="/Frontend/assets/Logo.png" alt="Synel Logo" />
+    <img :src="logoUrl" alt="Synel Logo" />
   </button>
 
   <div v-if="showChat" class="ai-chatbox">
@@ -26,7 +26,7 @@
       <textarea
         v-model="message"
         ref="inputResizer"
-        placeholder="Tanya kopi favoritmu..."
+        placeholder="Apa kabar hari ini..."
         rows="1"
         @input="adjustHeight"
         @keyup.enter.exact.prevent="sendMessage"
