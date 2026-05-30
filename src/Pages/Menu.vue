@@ -462,32 +462,23 @@ export default {
         { id: 'Coffee',
           label: 'Coffee'
         },
-        { id: 'Non Coffee',
-          label: 'Non Coffee'
+        { id: '⁠Tea',
+          label: '⁠Tea'
         },
 
         {
-          id: 'Matcha',
-          label: 'Matcha'
+          id: '⁠Chocolate',
+          label: '⁠Chocolate'
         },
 
         {
-          id: 'Cold Brew',
-          label: 'Cold Brew'
+          id: '⁠Mocktail',
+          label: '⁠Mocktail'
         },
 
         {
-          id: 'Latte',
-          label: 'Latte'
-        },
-
-        {
-          id: 'Single Origin',
-          label: 'Single Origin'
-        },
-        {
-          id: 'Seasonal',
-          label: 'Seasonal'
+          id: 'Smoothies',
+          label: 'Smoothies'
         }
 
       ],
