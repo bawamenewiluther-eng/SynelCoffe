@@ -139,7 +139,7 @@ export default {
   border: none;
   background: linear-gradient(135deg, #d4a853, #f3d18b);
   cursor: pointer;
-  z-index: 10000;
+  z-index: 100;
   box-shadow: 0 10px 40px rgba(212,168,83,0.4);
   
   /* Posisi Foto di Tengah Sempurna */
