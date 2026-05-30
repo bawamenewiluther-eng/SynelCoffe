@@ -467,7 +467,10 @@ const confirmDelete = async () => {
     deleteId.value = null
 
     fetchMenus()
-
+     showToast(
+        'Menu berhasil dihapus ☕',
+        'success'
+      )
   }
 
   catch (error) {
