@@ -205,7 +205,7 @@ mounted() {
 
         await axios.post(
 
-          'https://synelcoffebackend-production.up.railway.app/api/reset-password',
+          '/api/reset-password',
 
           {
 
