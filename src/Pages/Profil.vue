@@ -112,31 +112,53 @@ export default {
 
   methods: {
 
-    async handleLogout() {
+async handleLogout() {
 
-      try {
+  try {
 
-        await axios.get('/sanctum/csrf-cookie')
+    const token =
+      decodeURIComponent(
+        document.cookie
+          .split('; ')
+          .find(c =>
+            c.startsWith('XSRF-TOKEN=')
+          )
+          ?.split('=')[1] || ''
+      )
 
-        await axios.post('/logout')
+    console.log(
+      'LOGOUT TOKEN:',
+      token
+    )
 
-        const auth = useAuthStore()
-
-        auth.logout()
-
-        this.$router.push('/login')
-
-      } catch (error) {
-
-        console.error(
-          'PROFILE ERROR:',
-          error.response?.status,
-          error.response?.data
-        )
-
+    await axios.post(
+      '/logout',
+      {},
+      {
+        headers: {
+          'X-XSRF-TOKEN': token
+        }
       }
+    )
 
-    }
+    const auth =
+      useAuthStore()
+
+    auth.logout()
+
+    this.$router.push('/login')
+
+  } catch (error) {
+
+    console.error(
+      'PROFILE ERROR:',
+      error.response?.status,
+      error.response?.data
+    )
+
+  }
+
+}
 
   }
 
