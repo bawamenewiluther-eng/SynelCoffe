@@ -8,11 +8,20 @@ const api = axios.create({
 
 // Paksa Axios mengambil token dari cookie setiap kali melakukan request
 api.interceptors.request.use((config) => {
-    const token = Cookies.get('XSRF-TOKEN');
+    // 1. Coba ambil dari js-cookie
+    let token = Cookies.get('XSRF-TOKEN');
+    
+    // 2. Jika gagal (karena cross-domain), coba cari manual di document.cookie
+    if (!token) {
+        const match = document.cookie.match(/XSRF-TOKEN=([^;]+)/);
+        if (match) token = match[1];
+    }
+
     if (token) {
         config.headers['X-XSRF-TOKEN'] = decodeURIComponent(token);
     }
     return config;
+
 });
 
 api.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
