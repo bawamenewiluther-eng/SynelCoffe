@@ -227,31 +227,22 @@ export default {
 
       },
    async handleLogin() {
-
   const auth = useAuthStore()
-
   this.loading = true
-
   try {
-
-    // Ambil CSRF cookie
     await axios.get('/sanctum/csrf-cookie');
-
     await axios.post('/login', {
-            email: this.email,
-            password: this.password
-        });
+        email: this.email,
+        password: this.password
+    });
 
-    await auth.fetchUser()
+    // Tambahkan jeda 500ms agar cookie benar-benar terpasang di browser
+    await new Promise(resolve => setTimeout(resolve, 500));
 
-    this.showToast(
-      'success',
-      'Selamat Datang di Synel Coffee ☕'
-    )
-
-    this.$router.push('/')
-
-  } catch (error) {
+    await auth.fetchUser(); // Sekarang panggil user
+    
+    this.$router.push('/');
+   } catch (error) {
 
     console.error(error)
 
