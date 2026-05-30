@@ -181,7 +181,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  import axios from '../axios';
   import { useAuthStore }
   from '../stores/auth'
 
@@ -235,12 +235,12 @@ export default {
   try {
 
     // Ambil CSRF cookie
-    await axios.get('https://synelcoffebackend-production.up.railway.app/sanctum/csrf-cookie');
+    await axios.get('/sanctum/csrf-cookie');
 
-    await axios.post('https://synelcoffebackend-production.up.railway.app/login', {
-      email: this.email,
-      password: this.password
-    })
+    await axios.post('/login', {
+            email: this.email,
+            password: this.password
+        });
 
     await auth.fetchUser()
 
@@ -258,7 +258,10 @@ export default {
     this.showToast(
       'error',
       'Login gagal'
+      
     )
+    const message = error.response?.data?.message || 'Login gagal'
+    this.showToast('error', message)
 
   } finally {
 
