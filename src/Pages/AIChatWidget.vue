@@ -1,5 +1,9 @@
 <template>
-  <button class="ai-float-btn" @click="toggleChat">
+  <button 
+    v-if="!showChat" 
+    class="ai-float-btn" 
+    @click="toggleChat"
+  >
     <img :src="logoUrl" alt="Synel Logo" />
   </button>
 
@@ -26,7 +30,7 @@
       <textarea
         v-model="message"
         ref="inputResizer"
-        placeholder="Apa kabar hari ini..."
+        placeholder="Tanya kopi favoritmu..."
         rows="1"
         @input="adjustHeight"
         @keyup.enter.exact.prevent="sendMessage"
@@ -40,10 +44,10 @@
 import axios from '../api'
 import { useAuthStore } from '../stores/auth'
 
-
 export default {
   data() {
     return {
+      // Pastikan path ini sesuai dengan struktur folder kamu
       logoUrl: new URL('../../assets/Logo.png', import.meta.url).href,
       showChat: false,
       message: '',
@@ -63,7 +67,7 @@ export default {
         this.scrollToBottom();
       }
     },
-    // Fungsi agar textarea otomatis bertambah tinggi ke bawah
+    // Menyesuaikan tinggi textarea agar teks turun ke bawah (pindah baris)
     adjustHeight() {
       const textarea = this.$refs.inputResizer;
       if (textarea) {
@@ -76,10 +80,10 @@ export default {
 
       const userMessage = this.message;
       
-      // Push pesan user
+      // Tambah pesan user
       this.messages.push({ role: 'user', text: userMessage });
       
-      // Reset input dan tingginya
+      // Reset input teks dan tingginya
       this.message = '';
       if (this.$refs.inputResizer) {
         this.$refs.inputResizer.style.height = 'auto';
@@ -87,7 +91,7 @@ export default {
 
       this.scrollToBottom();
 
-      // Loading state
+      // Animasi Loading
       this.messages.push({ role: 'ai', text: '☕ Synel AI sedang berpikir...' });
 
       try {
@@ -103,13 +107,14 @@ export default {
         this.messages.pop(); // Hapus pesan loading
         this.messages.push({ role: 'ai', text: aiReply });
       } catch (error) {
-        console.error(error);
+        console.error("Chat Error:", error);
         this.messages.pop();
         this.messages.push({ role: 'ai', text: 'Maaf ☕ Synel AI sedang error.' });
       } finally {
         this.scrollToBottom();
       }
     },
+    // Selalu scroll ke pesan terbaru
     scrollToBottom() {
       this.$nextTick(() => {
         const container = this.$refs.chatBody;
@@ -128,16 +133,28 @@ export default {
   position: fixed;
   right: 30px;
   bottom: 30px;
-  width: 72px;
-  height: 72px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   border: none;
   background: linear-gradient(135deg, #d4a853, #f3d18b);
   cursor: pointer;
-  z-index: 10000; /* Tetap di atas chatbox */
+  z-index: 10000;
   box-shadow: 0 10px 40px rgba(212,168,83,0.4);
+  
+  /* Posisi Foto di Tengah Sempurna */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
 }
-.ai-float-btn img { width: 40px; }
+
+.ai-float-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Foto tajam dan penuh */
+}
 
 /* CHATBOX */
 .ai-chatbox {
@@ -145,16 +162,15 @@ export default {
   right: 30px;
   bottom: 30px;
   width: 380px;
-  /* Menghitung tinggi agar menutupi area header */
   height: calc(100vh - 60px); 
   background: rgba(18, 10, 5, 0.98);
   border: 1px solid rgba(212, 168, 83, 0.2);
   display: flex;
   flex-direction: column;
-  z-index: 9999; /* Angka tinggi agar menutupi header */
+  z-index: 9999; /* Di atas header */
   animation: slideIn 0.3s ease-out;
   border-radius: 12px;
-  overflow: hidden;
+  overflow: hidden; /* Mencegah elemen keluar jalur */
 }
 
 @keyframes slideIn {
@@ -171,33 +187,39 @@ export default {
   background: rgba(255, 255, 255, 0.03);
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
-.chat-header h3 { color: #d4a853; margin: 0; }
+.chat-header h3 { color: #d4a853; margin: 0; font-size: 1.2rem; }
 .chat-header p { color: rgba(240,223,200,0.5); font-size: 12px; margin: 0; }
 
-/* BODY */
+/* BODY (Hanya Scroll Vertikal) */
 .chat-body {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden; /* No horizontal scroll */
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 14px;
+  scroll-behavior: smooth;
 }
 
-/* MESSAGE BUBBLES */
+/* PESAN (Teks turun ke bawah) */
 .chat-message {
   max-width: 85%;
   padding: 12px 16px;
   line-height: 1.5;
   border-radius: 12px;
   font-size: 14px;
+  white-space: pre-wrap; /* Mengikuti baris baru */
+  word-break: break-word; /* Memaksa teks panjang turun */
 }
+
 .chat-message.user {
   align-self: flex-end;
   background: #d4a853;
   color: #050301;
   border-bottom-right-radius: 2px;
 }
+
 .chat-message.ai {
   align-self: flex-start;
   background: rgba(255,255,255,0.08);
@@ -205,10 +227,10 @@ export default {
   border-bottom-left-radius: 2px;
 }
 
-/* INPUT AREA */
+/* INPUT AREA (No Focus Border) */
 .chat-input {
   display: flex;
-  align-items: flex-end; /* Tombol send tetap di bawah saat textarea meninggi */
+  align-items: flex-end;
   background: rgba(255, 255, 255, 0.03);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   padding: 10px;
@@ -226,9 +248,9 @@ export default {
   font-size: 14px;
   max-height: 120px;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
-/* Menghilangkan border biru saat fokus */
 .chat-input textarea:focus {
   box-shadow: none !important;
 }
@@ -242,6 +264,11 @@ export default {
   border-radius: 8px;
   cursor: pointer;
   margin-left: 10px;
+  transition: opacity 0.2s;
+}
+
+.chat-input button:hover {
+  opacity: 0.9;
 }
 
 .close-btn {
@@ -250,5 +277,10 @@ export default {
   color: white;
   font-size: 18px;
   cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.close-btn:hover {
+  transform: scale(1.2);
 }
 </style>
