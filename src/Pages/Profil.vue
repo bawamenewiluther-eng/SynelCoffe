@@ -118,7 +118,8 @@ export default {
 
     return {
 
-      user: {}
+      user: {},
+      loading: false
 
     }
 
@@ -139,7 +140,7 @@ export default {
 async handleLogout() {
 
   try {
-
+    this.loading = true
     const token =
       decodeURIComponent(
         document.cookie
@@ -180,6 +181,8 @@ async handleLogout() {
       error.response?.data
     )
 
+  } finally {
+    this.loading = false
   }
 
 }
