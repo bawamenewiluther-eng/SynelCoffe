@@ -459,11 +459,11 @@ export default {
           id: 'Espresso',
           label: 'Espresso'
         },
-        { id: 'Coffe',
-          label: 'Coffe'
+        { id: 'Coffee',
+          label: 'Coffee'
         },
-        { id: 'Non Coffe',
-          label: 'Non Coffe'
+        { id: 'Non Coffee',
+          label: 'Non Coffee'
         },
 
         {
@@ -485,12 +485,6 @@ export default {
           id: 'Single Origin',
           label: 'Single Origin'
         },
-
-        {
-          id: 'Non-Coffee',
-          label: 'Non-Coffee'
-        },
-
         {
           id: 'Seasonal',
           label: 'Seasonal'
