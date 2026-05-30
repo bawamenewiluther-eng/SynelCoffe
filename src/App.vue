@@ -82,7 +82,7 @@ onMounted(() => {
 </main>
 
 <Footer />
-<AIChatWidget :is-shifted="cartStore.totalItems > 0" />
+<AIChatWidget :is-shifted="cart.items.length > 0" />
 
   </template>
   <Cursor />
