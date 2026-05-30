@@ -8,7 +8,7 @@
     @click="toggleChat"
   >
 
-    ☕
+    <img src="/Frontend/assets/Logo.png" alt="">
 
   </button>
 
@@ -69,28 +69,15 @@
     </div>
 
     <!-- INPUT -->
-    <div class="chat-input">
-
-      <input
-
-        v-model="message"
-
-        type="text"
-
-        placeholder="Tanya kopi favoritmu..."
-
-        @keyup.enter="sendMessage"
-      >
-
-      <button
-        @click="sendMessage"
-      >
-
-        Send
-
-      </button>
-
-    </div>
+<div class="chat-input">
+  <textarea
+    v-model="message"
+    placeholder="Tanya kopi favoritmu..."
+    @keyup.enter.exact.prevent="sendMessage"
+    rows="1"
+  ></textarea>
+  <button @click="sendMessage">Send</button>
+</div>
 
   </div>
 
@@ -276,32 +263,28 @@ response.data.reply
 /* CHATBOX */
 
 .ai-chatbox {
-
   position: fixed;
-
   right: 30px;
-
-  bottom: 120px;
-
+  bottom: 30px; /* Diubah agar nempel ke bawah atau sejajar float button */
   width: 380px;
-
-  height: 600px;
-
-  background:
-    rgba(18,10,5,0.96);
-
-  border:
-    1px solid
-    rgba(212,168,83,0.2);
-
+  /* Gunakan vh agar responsif terhadap tinggi layar */
+  height: calc(100vh - 60px); 
+  background: rgba(18, 10, 5, 0.98);
+  border: 1px solid rgba(212, 168, 83, 0.2);
   display: flex;
-
   flex-direction: column;
-
   overflow: hidden;
+  
+  /* KRITIKAL: Naikkan z-index agar di atas segalanya */
+  z-index: 9999; 
+  
+  /* Opsional: Tambahkan animasi agar munculnya halus */
+  animation: slideIn 0.3s ease-out;
+}
 
-  z-index: 99;
-
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 /* HEADER */
@@ -393,28 +376,33 @@ response.data.reply
 /* INPUT */
 
 .chat-input {
-
   display: flex;
-
-  border-top:
-    1px solid
-    rgba(255,255,255,0.06);
-
-}
-
-.chat-input input {
-
-  flex: 1;
-
-  border: none;
-
+  align-items: flex-end; /* Tombol send tetap di bawah saat textarea meninggi */
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
   background: transparent;
-
-  padding: 18px;
-
-  color: white;
-
 }
+
+.chat-input textarea {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 18px;
+  color: white;
+  resize: none; /* User tidak bisa tarik manual ukurannya */
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  max-height: 150px; /* Batas tinggi maksimal sebelum muncul scrollbar */
+  overflow-y: auto;
+}
+
+/* HILANGKAN BORDER SAAT DIKLIK */
+.chat-input textarea:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
 
 .chat-input button {
 
