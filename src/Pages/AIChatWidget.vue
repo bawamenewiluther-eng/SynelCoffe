@@ -155,8 +155,8 @@ export default {
   position: fixed;
   right: 30px;
   bottom: 30px;
-  width: 75px;
-  height: 75px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   border: none;
   background: linear-gradient(135deg, #d4a853, #f3d18b);
