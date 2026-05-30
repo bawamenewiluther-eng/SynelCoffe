@@ -640,8 +640,7 @@ export default {
 .search-wrap,
 .menu-grid,
 .section-label,
-.cart-floater,
-.modal-overlay {
+.cart-floater {
 
   position: relative;
   z-index: 2;
@@ -1623,26 +1622,20 @@ export default {
 ========================= */
 
 .modal-overlay {
-
   position: fixed;
-
   inset: 0;
-
-  z-index: 101;
-
+  
+  /* TINGKATKAN Z-INDEX */
+  z-index: 9999; 
+  
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   padding: 24px;
-
-  background:
-    rgba(56, 30, 30, 0.72);
-
+  
+  /* Ubah background agar lebih gelap & elegan */
+  background: rgba(10, 5, 2, 0.9); 
   backdrop-filter: blur(14px);
-
 }
 
 .modal-box {
