@@ -79,7 +79,31 @@
     </div>
 
   </section>
+<div
+  v-if="loading"
+  class="loading-overlay"
+>
 
+  <div class="premium-loader">
+
+    <div class="ring ring-1"></div>
+
+    <div class="ring ring-2"></div>
+
+    <div class="ring ring-3"></div>
+
+    <div class="coffee-core">
+      ☕
+    </div>
+
+  </div>
+
+  <div class="loading-text">
+
+    Tunggu Sebentar...
+
+  </div>
+</div>
 </template>
 
 <script>
@@ -167,6 +191,224 @@ async handleLogout() {
 </script>
 
 <style scoped>
+.loading-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  background:
+    rgba(7,5,3,0.82);
+
+  backdrop-filter: blur(12px);
+
+  z-index: 101;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+/* =========================
+   LOADER WRAPPER
+========================= */
+
+.premium-loader {
+
+  position: relative;
+
+  width: 140px;
+
+  height: 140px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+/* =========================
+   RINGS
+========================= */
+
+.ring {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  border-style: solid;
+
+  animation:
+    rotateLoader linear infinite;
+
+}
+
+/* OUTER */
+
+.ring-1 {
+
+  width: 140px;
+
+  height: 140px;
+
+  border-width: 2px;
+
+  border-color:
+    rgba(212,168,83,0.15);
+
+  border-top-color:
+    var(--gold);
+
+  animation-duration: 2.4s;
+
+  box-shadow:
+    0 0 40px rgba(212,168,83,0.22);
+
+}
+
+/* MIDDLE */
+
+.ring-2 {
+
+  width: 104px;
+
+  height: 104px;
+
+  border-width: 2px;
+
+  border-color:
+    rgba(124,74,30,0.15);
+
+  border-right-color:
+    var(--caramel);
+
+  animation-duration: 1.8s;
+
+  animation-direction: reverse;
+
+}
+
+/* INNER */
+
+.ring-3 {
+
+  width: 72px;
+
+  height: 72px;
+
+  border-width: 2px;
+
+  border-color:
+    rgba(240,223,200,0.08);
+
+  border-bottom-color:
+    var(--cream);
+
+  animation-duration: 1.2s;
+
+}
+
+.coffee-core {
+
+  width: 54px;
+
+  height: 54px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 22px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(212,168,83,0.18) 0%,
+      rgba(124,74,30,0.12) 100%
+    );
+
+  border:
+    1px solid rgba(212,168,83,0.22);
+
+  box-shadow:
+    0 0 25px rgba(212,168,83,0.18);
+
+  animation:
+    pulseCoffee 2s ease-in-out infinite;
+
+}
+
+/* =========================
+   TEXT
+========================= */
+
+.loading-text {
+
+  margin-top: 28px;
+
+  font-family: 'Space Mono', monospace;
+
+  font-size: 11px;
+
+  letter-spacing: 4px;
+
+  text-transform: uppercase;
+
+  color: var(--gold);
+
+  opacity: 0.82;
+
+}
+@keyframes rotateLoader {
+
+  from {
+
+    transform: rotate(0deg);
+
+  }
+
+  to {
+
+    transform: rotate(360deg);
+
+  }
+
+}
+
+@keyframes pulseCoffee {
+
+  0%, 100% {
+
+    transform: scale(1);
+
+    box-shadow:
+      0 0 20px rgba(212,168,83,0.16);
+
+  }
+
+  50% {
+
+    transform: scale(1.08);
+
+    box-shadow:
+      0 0 40px rgba(212,168,83,0.32);
+
+  }
+
+}
+
 
 /* =========================
    PAGE
