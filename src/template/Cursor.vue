@@ -27,7 +27,7 @@
       transform: translate(-50%,-50%);
       transition: width .3s, height .3s;
       mix-blend-mode: difference;
-      z-index: 100;
+      z-index: 100000000000000000000;
     }
     .cursor-ring {
       position: fixed; width: 36px; height: 36px;
