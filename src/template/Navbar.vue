@@ -45,7 +45,7 @@ storeToRefs(auth)
 
       <!-- ABOUT -->
       <router-link to="/my-orders">
-        Pesanan
+        Riwayat Pesanan
       </router-link>
 
       <!-- ORDER -->
