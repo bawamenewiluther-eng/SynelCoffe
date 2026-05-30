@@ -88,7 +88,7 @@
 
         order.id,
 
-        'brewing'
+        'Process...'
 
       )"
     >
@@ -102,7 +102,7 @@
 
       v-else-if="
         order.order_status
-        === 'brewing'
+        === 'Process...☕'
       "
 
       class="status-btn done"

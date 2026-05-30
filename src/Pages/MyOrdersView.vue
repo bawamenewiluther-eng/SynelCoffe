@@ -97,7 +97,7 @@
         <p
           v-else-if="
             order.order_status
-            === 'brewing'
+            === 'Process...'
           "
         >
 
