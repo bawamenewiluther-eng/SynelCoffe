@@ -271,10 +271,15 @@ export default {
   max-height: 120px;
   overflow-y: auto;
   overflow-x: hidden;
+  scrollbar-width: none; /* Untuk Firefox */
+  -ms-overflow-style: none;  /* Untuk Internet Explorer dan Edge lama */
 }
 
 .chat-input textarea:focus {
   box-shadow: none !important;
+}
+.chat-input textarea::-webkit-scrollbar {
+  display: none;
 }
 
 .chat-input button {
