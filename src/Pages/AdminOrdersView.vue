@@ -102,7 +102,7 @@
 
       v-else-if="
         order.order_status
-        === 'Process...☕'
+        === 'brewing'
       "
 
       class="status-btn done"

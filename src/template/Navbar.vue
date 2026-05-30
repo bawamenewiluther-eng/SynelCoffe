@@ -44,8 +44,8 @@ storeToRefs(auth)
       </router-link>
 
       <!-- ABOUT -->
-      <router-link to="/tentang">
-        Tentang
+      <router-link to="/my-orders">
+        Pesanan
       </router-link>
 
       <!-- ORDER -->
