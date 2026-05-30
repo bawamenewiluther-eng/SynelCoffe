@@ -459,6 +459,12 @@ export default {
           id: 'Espresso',
           label: 'Espresso'
         },
+        { id: 'Coffe',
+          label: 'Coffe'
+        },
+        { id: 'Non Coffe',
+          label: 'Non Coffe'
+        },
 
         {
           id: 'Matcha',
