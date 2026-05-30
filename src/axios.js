@@ -1,16 +1,20 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const api = axios.create({
-    // Ganti dengan URL Railway kamu
     baseURL: 'https://synelcoffebackend-production.up.railway.app',
-    withCredentials: true, 
+    withCredentials: true,
 });
 
-// Konfigurasi khusus untuk Laravel Sanctum
-api.defaults.xsrfCookieName = 'XSRF-TOKEN';
-api.defaults.xsrfHeaderName = 'X-XSRF-TOKEN';
+// Paksa Axios mengambil token dari cookie setiap kali melakukan request
+api.interceptors.request.use((config) => {
+    const token = Cookies.get('XSRF-TOKEN');
+    if (token) {
+        config.headers['X-XSRF-TOKEN'] = decodeURIComponent(token);
+    }
+    return config;
+});
 
-// Opsional: Header agar Laravel mengenali request AJAX
 api.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 api.defaults.headers.common['Accept'] = 'application/json';
 
