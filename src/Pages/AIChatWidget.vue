@@ -40,9 +40,11 @@
 import axios from '../api'
 import { useAuthStore } from '../stores/auth'
 
+
 export default {
   data() {
     return {
+      logoUrl: new URL('../../assets/Logo.png', import.meta.url).href,
       showChat: false,
       message: '',
       messages: [
