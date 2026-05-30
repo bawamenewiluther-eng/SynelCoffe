@@ -85,6 +85,8 @@
 <script>
 
 import axios from '../axios'
+import { useAuthStore }
+from '../stores/auth'
 
 export default {
 
@@ -98,23 +100,15 @@ export default {
 
   },
 
-  async mounted() {
+ async mounted() {
 
-    try {
+  const auth =
+    useAuthStore()
 
-      const response = await axios.get(
-      'https://synelcoffebackend-production.up.railway.app/user'
-      )
+  this.user =
+    auth.user
 
-      this.user = response.data
-
-    } catch (error) {
-
-      window.location.href = '/login'
-
-    }
-
-  },
+},
 
   methods: {
 
@@ -122,18 +116,18 @@ export default {
 
       try {
 
-        await axios.post(
-          'https://synelcoffebackend-production.up.railway.app/logout'
-        )
+       await axios.post('/logout')
 
-        window.location.href = '/login'
 
       } catch (error) {
 
-        console.error(error)
+        console.error(
+          'PROFILE ERROR:',
+          error.response?.status,
+          error.response?.data
+        )
 
       }
-
     }
 
   }
