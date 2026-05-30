@@ -1557,6 +1557,27 @@ const editMenu = (menu) => {
   }
 
 }
+@keyframes pulseCoffee {
+
+  0%, 100% {
+
+    transform: scale(1);
+
+    box-shadow:
+      0 0 20px rgba(212,168,83,0.16);
+
+  }
+
+  50% {
+
+    transform: scale(1.08);
+
+    box-shadow:
+      0 0 40px rgba(212,168,83,0.32);
+
+  }
+
+}
 /* Chrome, Safari, Edge */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {

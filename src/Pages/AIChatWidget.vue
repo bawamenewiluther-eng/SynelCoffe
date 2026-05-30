@@ -64,7 +64,12 @@ export default {
           text: 'Halo ☕ Aku Synel AI. Mau rekomendasi kopi apa hari ini?'
         }
       ],
-      authStore: useAuthStore()
+    }
+  },
+  computed: {
+  
+    authStore() {
+      return useAuthStore();
     }
   },
   methods: {
