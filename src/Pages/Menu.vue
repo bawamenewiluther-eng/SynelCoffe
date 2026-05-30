@@ -434,6 +434,7 @@ import {
 }
 from '../stores/cart'
 export default {
+  components: { AIChatWidget },
   async mounted() {
 
    this.fetchMenus()
